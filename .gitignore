@@ -1,0 +1,12 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+
+# Real account data lives in Supabase, not the repo (see README)
+api/data/accounts.json
+
+# React app
+web/node_modules/
+web/dist/
+web/.env
