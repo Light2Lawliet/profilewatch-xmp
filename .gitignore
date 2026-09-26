@@ -10,3 +10,5 @@ api/data/accounts.json
 web/node_modules/
 web/dist/
 web/.env
+.vercel
+.env*

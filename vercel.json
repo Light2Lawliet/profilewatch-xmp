@@ -1,0 +1,13 @@
+{
+  "builds": [
+    { "src": "web/package.json", "use": "@vercel/static-build", "config": { "distDir": "dist" } },
+    { "src": "api/main.py", "use": "@vercel/python" }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "api/main.py" },
+    { "src": "/assets/(.*)", "dest": "web/assets/$1" },
+    { "src": "/favicon.svg", "dest": "web/favicon.svg" },
+    { "src": "/icons.svg", "dest": "web/icons.svg" },
+    { "src": "/(.*)", "dest": "web/index.html" }
+  ]
+}

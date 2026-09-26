@@ -2,7 +2,11 @@
 // original ProfileWatch build. This app is the "API integration" half of
 // the stack: Supabase/RLS decides *which* account you're allowed to know
 // about, and this service computes and explains that account's health.
-const API_BASE = import.meta.env.VITE_API_BASE as string;
+// Empty by default: on Vercel, api/ and web/ are the same deployment, so
+// relative "/api/..." paths already hit the right place. Only set
+// VITE_API_BASE when the API lives on a different origin (e.g. local dev
+// against `python main.py` while running `npm run dev` separately).
+const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 
 function accessKey(): string | null {
   return localStorage.getItem("profilewatch_access_key");
@@ -28,7 +32,7 @@ export interface AccountView {
   id: string;
   business_name: string;
   health_score: number;
-  score_components: Record<string, number>;
+  score_components: { key: string; label: string; weight: number; value: number; max: number; contribution: number }[];
   incidents: { type: string; severity: string; summary: string }[];
   churn_risk: { churn_risk: boolean; churn_risk_level: string };
 }

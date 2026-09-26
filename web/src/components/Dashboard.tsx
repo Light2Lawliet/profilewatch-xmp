@@ -74,10 +74,12 @@ export function Dashboard() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-              {Object.entries(view.score_components).map(([k, v]) => (
-                <div key={k} className="rounded-md bg-white/5 px-3 py-2">
-                  <div className="text-xs text-[--ink-2]">{k.replace(/_/g, " ")}</div>
-                  <div className="text-sm font-medium text-[--ink]">{v}</div>
+              {view.score_components.map((c) => (
+                <div key={c.key} className="rounded-md bg-white/5 px-3 py-2">
+                  <div className="text-xs text-[--ink-2]">{c.label}</div>
+                  <div className="text-sm font-medium text-[--ink]">
+                    {c.contribution} <span className="text-[--ink-2]">/ {c.max} pts</span>
+                  </div>
                 </div>
               ))}
             </div>
